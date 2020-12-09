@@ -23,6 +23,21 @@ module.exports = {
   add(scheme) {
     return db('schemes')
       .insert(scheme, 'id');
+  }, 
+  addStep(stepData, id) {
+    const completeStep = {...stepData, scheme_id: id};
+    return db('steps')
+      .insert(completeStep, 'id');
+  }, 
+  update(changes, id) {
+    return db('schemes')
+      .where('id', id)
+      .update(changes);
+  }, 
+  remove(id) {
+    return db('schemes')
+      .where('id', id)
+      .del();
   }
 };
 
